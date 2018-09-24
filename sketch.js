@@ -3,7 +3,8 @@ const screenH = 400;
 
 function setup() {
     createCanvas(screenW, screenH);
-    prompt("SUP MARVIN");
+    //prompt("SUP MARVIN");
+    // what up
 }
 
 function draw() {
