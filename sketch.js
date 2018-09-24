@@ -3,9 +3,9 @@ const screenH = 400;
 
 function setup() {
     createCanvas(screenW, screenH);
-    // Can you see this Austin!
+    prompt("SUP MARVIN");
 }
 
 function draw() {
-    background(0);   
+    background(0);
 }
