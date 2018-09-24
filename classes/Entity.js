@@ -6,4 +6,20 @@ class Entity {
       this.width = width;
       this.height = height;
     }
+
+    setLocation(x, y) {
+      this.x = x;
+      this.y = y;
+      this.collRect.setLocation(x, y);
+    }
+
+    move(x, y) {
+      this.x += x;
+      this.y += y;
+      this.collRect.setLocation(this.x, this.y);
+    }
+
+    draw() {
+      this.collRect.show();
+    }
 }
