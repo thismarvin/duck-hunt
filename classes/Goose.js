@@ -8,5 +8,11 @@ class Goose extends Entity {
     this.speed = speed;
     this.deltaX = Math.random() + 0.2 * speed; // change later, make min dynamic.
     this.deltaY = Math.random() + 0.2 * speed; // change later, make min dynamic.
+    this.fallen = false;
+    this.fall = false;
+  }
+
+  update() {
+
   }
 }
