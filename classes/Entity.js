@@ -5,6 +5,7 @@ class Entity {
       this.y = y;
       this.width = width;
       this.height = height;
+      this.dead = false;
     }
 
     setLocation(x, y) {
