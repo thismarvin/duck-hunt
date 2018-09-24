@@ -3,6 +3,7 @@ const screenH = 400;
 
 function setup() {
     createCanvas(screenW, screenH);
+    // Can you see this Austin!
 }
 
 function draw() {
