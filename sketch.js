@@ -13,6 +13,11 @@ function setup() {
     //line 2342
 }
 
+function update() {
+    
+}
+
 function draw() {
+    update();
     background(0);
 }
