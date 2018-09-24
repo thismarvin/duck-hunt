@@ -11,10 +11,11 @@ function setup() {
     //line 4
     alert("DSFSF");
     //line 2342
+    let rect = new Rectangle(0, 0, 40, 40);
 }
 
 function update() {
-    
+
 }
 
 function draw() {
