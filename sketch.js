@@ -8,6 +8,5 @@ function setup() {
 
 // This is update
 function draw() {
-    update();
     background(0);
 }
