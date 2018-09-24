@@ -5,6 +5,7 @@ function setup() {
     createCanvas(screenW, screenH);
     //prompt("SUP MARVIN");
     // what up
+    // my name is austin
 }
 
 function draw() {
