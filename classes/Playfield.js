@@ -8,7 +8,7 @@ class Playfield {
   }
 
   removeGeese() {
-    for (int i = this.geese.length - 1; i <= 0; i--) {
+    for (let i = this.geese.length - 1; i <= 0; i--) {
       if (this.geese[i].dead) {
         this.geese[i].splice(i, 1);
       }
