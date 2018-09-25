@@ -3,7 +3,7 @@ class Playfield {
     this.geese = new Array();
     this.mouseX = 0;
     this.mouseY = 0;
-    this.dog = new Dog();
+    //this.dog = new Dog();
     this.isGameOver = false;
   }
 
@@ -27,7 +27,7 @@ class Playfield {
 
   }
 
-  draw() {
+  show() {
 
   }
 }
