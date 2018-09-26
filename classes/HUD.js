@@ -15,6 +15,8 @@ class HUD {
         this.progressIndex = 0;
 
         this.timeLeft = 1000 * 5;
+
+        this.redDuck =  loadImage('assets/redDuck.png');
     }
 
     reset() {
@@ -50,7 +52,8 @@ class HUD {
         } else {
             this.progress[this.progressIndex] = "MISS";
         }
-        this.progressIndex++;
+
+        this.progressIndex = this.progressIndex + 1 < this.ducksPerRound ? ++this.progressIndex : this.progressIndex;
     }
 
     update() {
@@ -62,17 +65,18 @@ class HUD {
             switch (this.progress[i]) {
                 case "HIT":
                     fill(255, 0, 77);
-                    rect(i * 8, 8, 7, 7);
+                    image(this.redDuck, 202 + i * 32, 312);
                     break;
                 case "MISS":
-                    fill(255);
-                    rect(i * 8, 8, 7, 7);
-                    break;
-                case " ":
-                    fill(255);
-                    rect(i * 8, 8, 7, 7);
+
                     break;
             }
         }
+
+        for (let i = this.totalAmmo - this.currentAmmo - 1; i >= 0; i--){
+            fill(0);
+            rect(158 - i * 16 ,312,16,28);
+        }
+
     }
 }
