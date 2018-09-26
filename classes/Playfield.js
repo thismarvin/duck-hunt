@@ -25,6 +25,8 @@ class Playfield {
 
   update() {
 
+    // Have this here at the end so we dont have to call both methods in sketch.js
+    this.show();
   }
 
   show() {
