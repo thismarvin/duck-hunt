@@ -20,7 +20,7 @@ class Entity {
       this.collRect.setLocation(this.x, this.y);
     }
 
-    draw() {
+    show() {
       this.collRect.show();
     }
 }
