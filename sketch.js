@@ -17,15 +17,22 @@ function setup() {
 }
 
 function mousePressed() {
-    // Temporary, used to test the HUD.
-    this.hud.shoot();
-    this.hud.gooseWasHit(true);
+    // Handles when the player shoots at a goose.
+    if (this.hud.ammoAvailable()) {
+        this.hud.shoot();
+        let result = this.playfield.wasAGooseHitAt(mouseX, mouseY);
+        if (result) {
+            this.hud.reload();
+        }
+        this.hud.parseResultOfShot(result);
+    }
 }
 
 function keyPressed() {
-    // keyCode 82 is "R"
-    if (keyCode === 82){
+    // Press R to reset HUD and Playfield.
+    if (keyCode === 82) {
         this.hud.reset();
+        this.playfield.reset();
     }
 }
 
