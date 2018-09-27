@@ -3,4 +3,13 @@ class Dog extends Entity {
         super(x, y, 1, 1);
 
     }
+
+    update() {
+        this.show();
+
+      }
+    
+      show() {
+        super.show();
+      }
 }
