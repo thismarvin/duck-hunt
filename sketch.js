@@ -7,11 +7,16 @@ let playfield;
 let hud;
 
 function preload() {
-    this.backgroundImage = loadImage('assets/background.png');
+
+    //this.backgroundImage = loadImage('assets/background.png');
+    
 }
 
 function setup() {
     createCanvas(screenW, screenH);
+    this.backgroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/d71796736c56971a86c4a36fc32b306c-full.png');
+    this.backgroundImage.hide();
+
     this.playfield = new Playfield();
     this.hud = new HUD();
 }

@@ -13,7 +13,9 @@ class HUD {
         }
         this.progressIndex = 0;
         this.timeLeft = 1000 * 5; // not sure how im going to implement this yet
-        this.redDuck = loadImage('assets/redDuck.png');
+        //this.redDuck = loadImage('assets/redDuck.png');
+        this.redDuck = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
+        this.redDuck.hide();
     }
 
     reset() {
