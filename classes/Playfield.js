@@ -3,7 +3,6 @@ class Playfield {
     this.geese = []; //new Array(); // ???
     //this.mouseX = 0; // mouseX and mouseY already exist in p5
     //this.mouseY = 0;
-
     this.dog = new Dog();
     this.isGameOver = false;
 
@@ -24,7 +23,7 @@ class Playfield {
   removeGeese() {
     for (let i = this.geese.length - 1; i >= 0; i--) {
       if (this.geese[i].dead) {
-        this.geese[i].splice(i, 1);
+        this.geese.splice(i, 1);
       }
     }
   }
@@ -43,6 +42,7 @@ class Playfield {
 
   updateGeese() {
     this.geese.forEach(goose => {
+      goose.shouldFlyAway = getAmmoRemaining() == 0;
       goose.update();
     });
     this.removeGeese();

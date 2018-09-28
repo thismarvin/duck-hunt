@@ -32,15 +32,15 @@ class Goose extends Entity {
       }
     } else if (this.shouldFlyAway) {
       super.move(0, -1);
-      if (this.y < 0) {
+      if (this.y + gooseHeight < 0) {
         this.dead = true;
       }
     } else if (!this.hasFallen){
       super.move(this.deltaX, this.deltaY);
-      if (this.x + gooseWidth > screenW || this.x < 0) {
+      if (this.x + gooseWidth > playfieldW || this.x < 0) {
         this.deltaX = -this.deltaX;
       }
-      if (this.y + gooseHeight > screenH - 100 || this.y < 0) {
+      if (this.y + gooseHeight > playfieldH || this.y < 0) {
         this.deltaY = -this.deltaY;
       }
     }

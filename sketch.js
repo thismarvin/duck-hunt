@@ -1,6 +1,9 @@
 const screenW = 320 * 2;
 const screenH = 180 * 2;
 
+const playfieldW = screenW;
+const playfieldH = screenH - 100;
+
 let backgroundImage;
 let foregroundImage;
 
@@ -46,4 +49,9 @@ function draw() {
     this.playfield.update();
     image(this.foregroundImage, 0, 0);
     this.hud.update();
+}
+
+// gets the ammo left from the hud object (i don't know of any other way to do this lol)
+function getAmmoRemaining() {
+  return this.hud.currentAmmo;
 }
