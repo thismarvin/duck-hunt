@@ -8,7 +8,7 @@ class Playfield {
     this.isGameOver = false;
 
     // Temporary, for debugging
-    this.geese.push(new Goose(16, 16, 1));
+    this.geese.push(new Goose(16, 16, 10));
   }
 
 
@@ -18,7 +18,7 @@ class Playfield {
     this.isGameOver = false;
 
     // Temporary, for debugging
-    this.geese.push(new Goose(16, 16, 1));
+    this.geese.push(new Goose(16, 16, 10));
   }
 
   removeGeese() {

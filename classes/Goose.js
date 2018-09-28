@@ -7,13 +7,13 @@ class Goose extends Entity {
   constructor(x, y, speed) {
     // super(x, y, gooseWidth, gooseHeight);
     super(x, y, 30, 30);
-    this.speed = speed;
-    this.deltaX = Math.random() + 0.2 * speed; // change later, make min dynamic.
-    this.deltaY = Math.random() + 0.2 * speed; // change later, make min dynamic.
+    this.speed = speed; // not really the magnitude of velocity vector, but works similarly
+    this.deltaX = Math.random() * speed + 0.2; // change later, make min dynamic.
+    this.deltaY = Math.random() * speed + 0.2; // change later, make min dynamic.
 
-    this.hasFallen = false; // whats the difference?
-    this.shouldFall = false;
-    this.shouldFlyAway = false;
+    this.hasFallen = false; // true if the goose has finished falling, marks for pickup
+    this.shouldFall = false; // true if the goose is killed and needs to fall
+    this.shouldFlyAway = false; // true if the goose should fly away
   }
 
   update() {
@@ -29,19 +29,23 @@ class Goose extends Entity {
   move() {
     if (this.shouldFall) {
       super.move(0, 1);
+      if (this.y > screenH) {
+        this.hasFallen = true;
+        this.shouldFall = false;
+      }
     } else if (this.shouldFlyAway) {
       super.move(0, -1);
       if (this.y < 0) {
         this.dead = true;
       }
     } else {
+      super.move(this.deltaX, this.deltaY);
       if (this.x > screenW || x < 0) {
         this.deltaX = -this.deltaX;
       }
       if (this.y > screenH || y < 0) {
         this.deltaY = -this.deltaY;
       }
-      super.move(this.deltaX, this.deltaY);
     }
   }
 
