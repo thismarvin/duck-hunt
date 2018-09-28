@@ -33,7 +33,7 @@ class Playfield {
     let result = false;
     this.geese.forEach(goose => {
       if (mouseCollRect.intersects(goose.collRect)) {
-        goose.fall = true;
+        goose.shouldFall = true;
         result = true;
       }
     });
