@@ -2,21 +2,20 @@ const screenW = 320 * 2;
 const screenH = 180 * 2;
 
 let backgroundImage;
+let foregroundImage;
 
 let playfield;
 let hud;
 
 function preload() {
-
-    //this.backgroundImage = loadImage('assets/background.png');
-    
+    this.backgroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/95de8eee248cd8fe030292a0a13f5274-full.png');
+    this.backgroundImage.hide();
+    this.foregroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/19df8e9052b7d8e2fa6a7fa98e6c1991-full.png');
+    this.foregroundImage.hide();
 }
 
 function setup() {
     createCanvas(screenW, screenH);
-    this.backgroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/d71796736c56971a86c4a36fc32b306c-full.png');
-    this.backgroundImage.hide();
-
     this.playfield = new Playfield();
     this.hud = new HUD();
 }
@@ -44,7 +43,7 @@ function keyPressed() {
 function draw() {
     background(0);
     image(this.backgroundImage, 0, 0);
-
     this.playfield.update();
+    image(this.foregroundImage, 0, 0);
     this.hud.update();
 }
