@@ -1,12 +1,9 @@
+let gooseWidth = 30;
+let gooseHeight = 30;
 class Goose extends Entity {
-
-  // You cant do this lol actually how would you make a constant in a class?
-  //const gooseWidth = 30;
-  //const gooseHeight = 30;
-
   constructor(x, y, speed) {
     // super(x, y, gooseWidth, gooseHeight);
-    super(x, y, 30, 30);
+    super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
     this.deltaX = Math.random() * speed + 0.2; // change later, make min dynamic.
     this.deltaY = Math.random() * speed + 0.2; // change later, make min dynamic.
@@ -38,12 +35,12 @@ class Goose extends Entity {
       if (this.y < 0) {
         this.dead = true;
       }
-    } else {
+    } else if (!this.hasFallen){
       super.move(this.deltaX, this.deltaY);
-      if (this.x > screenW || x < 0) {
+      if (this.x + gooseWidth > screenW || this.x < 0) {
         this.deltaX = -this.deltaX;
       }
-      if (this.y > screenH || y < 0) {
+      if (this.y + gooseHeight > screenH || this.y < 0) {
         this.deltaY = -this.deltaY;
       }
     }
