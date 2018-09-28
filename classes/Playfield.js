@@ -49,7 +49,6 @@ class Playfield {
   }
 
   update() {
-    // this is apparently how foreach loops work in javascript?
     this,this.updateGeese();
     //this.dog.update();
   }
