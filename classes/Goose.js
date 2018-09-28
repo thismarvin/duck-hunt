@@ -1,5 +1,5 @@
-let gooseWidth = 30;
-let gooseHeight = 30;
+const gooseWidth = 32;
+const gooseHeight = 32;
 class Goose extends Entity {
   constructor(x, y, speed) {
     // super(x, y, gooseWidth, gooseHeight);
@@ -40,7 +40,7 @@ class Goose extends Entity {
       if (this.x + gooseWidth > screenW || this.x < 0) {
         this.deltaX = -this.deltaX;
       }
-      if (this.y + gooseHeight > screenH || this.y < 0) {
+      if (this.y + gooseHeight > screenH - 100 || this.y < 0) {
         this.deltaY = -this.deltaY;
       }
     }
