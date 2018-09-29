@@ -55,3 +55,7 @@ function draw() {
 function getAmmoRemaining() {
   return this.hud.currentAmmo;
 }
+
+function getCurrentRound() {
+  return 1; // not sure how to get this current round...
+}

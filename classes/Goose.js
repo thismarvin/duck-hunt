@@ -1,7 +1,8 @@
 const gooseWidth = 32;
 const gooseHeight = 32;
+const minTime = 3;
 class Goose extends Entity {
-  constructor(x, y, speed) {
+  constructor(x, y, speed, panicFactor=0.5) {
     // super(x, y, gooseWidth, gooseHeight);
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
@@ -11,10 +12,21 @@ class Goose extends Entity {
     this.hasFallen = false; // true if the goose has finished falling, marks for pickup
     this.shouldFall = false; // true if the goose is killed and needs to fall
     this.shouldFlyAway = false; // true if the goose should fly away
+
+    let duration = 10 - getCurrentRound(); // getCurrentRound returns only 1 for now...
+    console.log(duration);
+    if (duration < minTime) {
+      duration = minTime;
+    }
+    // duck will try to change direction everytime this timer finishes.
+    this.timer = new Timer(3); // set to 3 for now until i figure out how to access the round.
+    // describes the probability the duck will change direction (0.5 by default).
+    this.panicFactor = panicFactor;
   }
 
   update() {
     this.show();
+    this.panic();
     this.move();
   }
 
@@ -46,9 +58,32 @@ class Goose extends Entity {
     }
   }
 
-  // this will probably be useful later.
   invertDirection() {
     this.deltaX = -this.deltaX;
     this.deltaY = -this.deltaY;
+  }
+
+  invertDirectionRandom() {
+    let hasInverted = false;
+    if (Math.random() < 0.5) {
+      this.deltaX = -this.deltaX;
+      hasInverted = true;
+    }
+    if (Math.random() < 0.5) {
+      this.deltaY = -this.deltaY;
+      hasInverted = true;
+    }
+    if (!hasInverted) {
+      this.invertDirection();
+    }
+  }
+
+  panic() {
+    if (this.timer.isFinished()) {
+      if (Math.random() < this.panicFactor) {
+        this.invertDirectionRandom();
+      }
+      this.timer.reset();
+    }
   }
 }
