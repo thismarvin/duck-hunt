@@ -2,7 +2,7 @@ const gooseWidth = 32;
 const gooseHeight = 32;
 const minTime = 3;
 class Goose extends Entity {
-  constructor(x, y, speed, panicFactor=0.5) {
+  constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
     // super(x, y, gooseWidth, gooseHeight);
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
@@ -13,15 +13,16 @@ class Goose extends Entity {
     this.shouldFall = false; // true if the goose is killed and needs to fall
     this.shouldFlyAway = false; // true if the goose should fly away
 
-    let duration = 10 - getCurrentRound(); // getCurrentRound returns only 1 for now...
-    console.log(duration);
+    let duration = 10 - getCurrentRound();
     if (duration < minTime) {
       duration = minTime;
     }
     // duck will try to change direction everytime this timer finishes.
-    this.timer = new Timer(3); // set to 3 for now until i figure out how to access the round.
+    this.timer = new Timer(duration);
     // describes the probability the duck will change direction (0.5 by default).
-    this.panicFactor = panicFactor;
+    this.basePanicFactor = initPanicFactor;
+    this.panicFactor = initPanicFactor;
+    this.maxPanicFactor = maxPanicFactor;
   }
 
   update() {
@@ -42,11 +43,6 @@ class Goose extends Entity {
         this.hasFallen = true;
         this.shouldFall = false;
       }
-    } else if (this.shouldFlyAway) {
-      super.move(0, -1);
-      if (this.y + gooseHeight < 0) {
-        this.dead = true;
-      }
     } else if (!this.hasFallen){
       super.move(this.deltaX, this.deltaY);
       if (this.x + gooseWidth > playfieldW || this.x < 0) {
@@ -54,6 +50,11 @@ class Goose extends Entity {
       }
       if (this.y + gooseHeight > playfieldH || this.y < 0) {
         this.deltaY = -this.deltaY;
+      }
+    } else if (this.shouldFlyAway) {
+      super.move(0, -1);
+      if (this.y + gooseHeight < 0) {
+        this.dead = true;
       }
     }
   }
@@ -79,6 +80,9 @@ class Goose extends Entity {
   }
 
   panic() {
+    if (this.panicFactor < this.maxPanicFactor) {
+      this.panicFactor = this.basePanicFactor + getNumShotsMissed() / 10;
+    }
     if (this.timer.isFinished()) {
       if (Math.random() < this.panicFactor) {
         this.invertDirectionRandom();
