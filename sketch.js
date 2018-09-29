@@ -19,8 +19,8 @@ function preload() {
 
 function setup() {
     createCanvas(screenW, screenH);
-    this.playfield = new Playfield();
     this.hud = new HUD();
+    this.playfield = new Playfield();   
 }
 
 function mousePressed() {
@@ -57,5 +57,5 @@ function getAmmoRemaining() {
 }
 
 function getCurrentRound() {
-  return 1; // not sure how to get this current round...
+  return this.hud.round; // not sure how to get this current round...
 }
