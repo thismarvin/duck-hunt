@@ -2,6 +2,7 @@
    TODO:
     - Possibly make panic timer decrease with shots missed.
     - Add animated geese.
+    - Make shots detect for hitboxes instead of big goose rectangle.
     - Make geese have random sprites.
     - Add countdown timer.
     - Tweak geese speed, make it scale with rounds.
