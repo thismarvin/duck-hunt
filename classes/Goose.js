@@ -1,14 +1,25 @@
 const gooseWidth = 120;
 const gooseHeight = 66;
 const minTime = 3;
+
+// hitbox constants
+const headHitboxW = 22;
+const headHitboxH = 22;
+const headHitboxOffsetX = 86;
+const headHitboxOffsetY = 0;
+const bodyHitboxW = 36;
+const bodyHitboxH = 28;
+const bodyHitboxOffsetX = 28;
+const bodyHitboxOffsetY = 19;
+
 class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
     this.deltaX = Math.random() * speed + 0.2; // change later, make min dynamic.
     this.deltaY = Math.random() * speed + 0.2; // change later, make min dynamic.
-    this.bodyHitbox = new Rectangle(x + 28, y + 19, 36, 28);
-    this.headHitbox = new Rectangle(x + 86, y, 22, 22);
+    this.bodyHitbox = new Rectangle(x + bodyHitboxOffsetX, y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
+    this.headHitbox = new Rectangle(x + headHitboxOffsetX, y + headHitboxOffsetY, headHitboxW, headHitboxH);
 
     this.hasFallen = false; // true if the goose has finished falling, marks for pickup
     this.shouldFall = false; // true if the goose is killed and needs to fall
@@ -60,6 +71,7 @@ class Goose extends Entity {
       this.moveHitboxes(this.deltaX, this.deltaY);
       if (this.x + gooseWidth > playfieldW || this.x < 0) {
         this.deltaX = -this.deltaX;
+        this.updateHitboxes();
       }
       if (this.y + gooseHeight > playfieldH || this.y < 0) {
         this.deltaY = -this.deltaY;
@@ -79,7 +91,15 @@ class Goose extends Entity {
   }
 
   updateHitboxes() {
-    // make the hitboxes move according to facing.
+    if (this.isFacingRight()) {
+      this.bodyHitbox = new Rectangle(this.x + bodyHitboxOffsetX, this.y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
+      this.headHitbox = new Rectangle(this.x + headHitboxOffsetX, this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
+    } else {
+      this.bodyHitbox = new Rectangle(this.x + gooseWidth - bodyHitboxOffsetX - bodyHitboxW,
+         this.y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
+      this.headHitbox = new Rectangle(this.x + gooseWidth - headHitboxOffsetX - headHitboxW,
+         this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
+    }
   }
 
   isFacingRight() {
@@ -113,6 +133,7 @@ class Goose extends Entity {
     if (this.timer.isFinished()) {
       if (Math.random() < this.panicFactor) {
         this.invertDirectionRandom();
+        this.updateHitboxes();
       }
       this.timer.reset();
     }
