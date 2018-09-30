@@ -23,6 +23,11 @@ class Goose extends Entity {
     this.basePanicFactor = initPanicFactor;
     this.panicFactor = initPanicFactor;
     this.maxPanicFactor = maxPanicFactor;
+
+    // Creates Goose Sprite from hosted image.
+    this.gooseSprite = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
+    this.gooseSprite.hide();
+
   }
 
   update() {
@@ -34,6 +39,9 @@ class Goose extends Entity {
   show() {
     fill(255);
     super.show();
+    // Draws Goose Sprite
+    image(this.gooseSprite, this.x, this.y);
+
   }
 
   move() {
