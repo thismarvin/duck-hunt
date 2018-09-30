@@ -11,6 +11,11 @@ class Rectangle {
     this.y = y;
   }
 
+  move(dx, dy) {
+    this.x += dx;
+    this.y += dy;
+  }
+
   setWidth(w) {
     this.w = w;
   }

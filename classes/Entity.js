@@ -14,10 +14,10 @@ class Entity {
       this.collRect.setLocation(x, y);
     }
 
-    move(x, y) {
-      this.x += x;
-      this.y += y;
-      this.collRect.setLocation(this.x, this.y);
+    move(dx, dy) {
+      this.x += dx;
+      this.y += dy;
+      this.collRect.move(dx, dy);
     }
 
     show() {

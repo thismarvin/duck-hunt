@@ -1,13 +1,14 @@
-const gooseWidth = 32;
-const gooseHeight = 32;
+const gooseWidth = 120;
+const gooseHeight = 66;
 const minTime = 3;
 class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
-    // super(x, y, gooseWidth, gooseHeight);
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
     this.deltaX = Math.random() * speed + 0.2; // change later, make min dynamic.
     this.deltaY = Math.random() * speed + 0.2; // change later, make min dynamic.
+    this.bodyHitbox = new Rectangle(x + 28, y + 19, 36, 28);
+    this.headHitbox = new Rectangle(x + 86, y, 22, 22);
 
     this.hasFallen = false; // true if the goose has finished falling, marks for pickup
     this.shouldFall = false; // true if the goose is killed and needs to fall
@@ -38,21 +39,25 @@ class Goose extends Entity {
 
   show() {
     fill(255);
-    super.show();
+    //super.show();
     // Draws Goose Sprite
     image(this.gooseSprite, this.x, this.y);
+    this.headHitbox.show();
+    this.bodyHitbox.show();
 
   }
 
   move() {
     if (this.shouldFall) {
       super.move(0, 1);
+      this.moveHitboxes(0, 1);
       if (this.y > screenH) {
         this.hasFallen = true;
         this.shouldFall = false;
       }
     } else if (!this.hasFallen){
       super.move(this.deltaX, this.deltaY);
+      this.moveHitboxes(this.deltaX, this.deltaY);
       if (this.x + gooseWidth > playfieldW || this.x < 0) {
         this.deltaX = -this.deltaX;
       }
@@ -61,10 +66,24 @@ class Goose extends Entity {
       }
     } else if (this.shouldFlyAway) {
       super.move(0, -1);
+      this.moveHitboxes(0, -1);
       if (this.y + gooseHeight < 0) {
         this.dead = true;
       }
     }
+  }
+
+  moveHitboxes(dx, dy) {
+    this.headHitbox.move(dx, dy);
+    this.bodyHitbox.move(dx, dy);
+  }
+
+  updateHitboxes() {
+    // make the hitboxes move according to facing.
+  }
+
+  isFacingRight() {
+    return this.deltaX > 0;
   }
 
   invertDirection() {
