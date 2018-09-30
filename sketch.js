@@ -1,3 +1,17 @@
+/*
+   TODO:
+    - Possibly make panic timer decrease with shots missed.
+    - Add animated geese.
+    - Make geese have random sprites.
+    - Add countdown timer.
+    - Tweak geese speed, make it scale with rounds.
+    - Create Dog class in general.
+    - Create scoring system
+    - Complete art, sounds, music, etc.
+        + Make screen flash when you shoot, for effect
+        + Make animations for Dog.
+        + Display round, game over, etc. (text class)
+ */
 const screenW = 320 * 2;
 const screenH = 180 * 2;
 
