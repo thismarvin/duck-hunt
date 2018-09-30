@@ -66,6 +66,7 @@ class Goose extends Entity {
   }
 
   move() {
+    console.log(getAmmoRemaining());
     if (this.shouldFall) {
       super.move(0, 1);
       this.moveHitboxes(0, 1);
@@ -73,7 +74,7 @@ class Goose extends Entity {
         this.hasFallen = true;
         this.shouldFall = false;
       }
-    } else if (!this.hasFallen){
+    } else if (!this.hasFallen && !this.shouldFlyAway) {
       super.move(this.deltaX, this.deltaY);
       this.moveHitboxes(this.deltaX, this.deltaY);
       if (this.x + gooseWidth > playfieldW || this.x < 0) {

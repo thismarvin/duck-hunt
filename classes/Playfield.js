@@ -32,7 +32,7 @@ class Playfield {
     let mouseCollRect = new Rectangle(x, y, 1, 1);
     let result = false;
     this.geese.forEach(goose => {
-      if (mouseCollRect.intersects(goose.collRect)) {
+      if (mouseCollRect.intersects(goose.bodyHitbox) || mouseCollRect.intersects(goose.headHitbox)) {
         goose.shouldFall = true;
         result = true;
       } else {
