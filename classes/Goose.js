@@ -119,9 +119,15 @@ class Goose extends Entity {
     this.deltaY = -this.deltaY;
   }
 
-  // randomly inverts goose direction.
+  // randomly inverts goose direction in unpredicatble ways.
   invertDirectionRandom() {
     let hasInverted = false;
+    if (Math.random() < 0.5) {
+      let temp = this.deltaY;
+      this.deltaY = this.deltaX;
+      this.deltaX = temp;
+      hasInverted = true;
+    }
     if (Math.random() < 0.5) {
       this.deltaX = -this.deltaX;
       hasInverted = true;

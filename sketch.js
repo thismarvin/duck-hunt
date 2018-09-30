@@ -5,6 +5,7 @@
     - Make shots detect for hitboxes instead of big goose rectangle.
     - Make geese have random sprites.
     - Add countdown timer.
+    - Make an actual round system.
     - Tweak geese speed, make it scale with rounds.
     - Create Dog class in general.
     - Create scoring system
