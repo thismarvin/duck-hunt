@@ -35,6 +35,8 @@ class Playfield {
       if (mouseCollRect.intersects(goose.collRect)) {
         goose.shouldFall = true;
         result = true;
+      } else {
+        goose.invertDirectionRandom();
       }
     });
     return result;

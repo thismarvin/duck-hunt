@@ -133,6 +133,7 @@ class Goose extends Entity {
     if (!hasInverted) {
       this.invertDirection();
     }
+    this.updateHitboxes();
   }
 
   panic() {
@@ -142,7 +143,6 @@ class Goose extends Entity {
     if (this.timer.isFinished()) {
       if (Math.random() < this.panicFactor) {
         this.invertDirectionRandom();
-        this.updateHitboxes();
       }
       this.timer.reset();
     }
