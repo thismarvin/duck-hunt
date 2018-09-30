@@ -37,8 +37,11 @@ class Goose extends Entity {
     this.maxPanicFactor = maxPanicFactor;
 
     // Creates Goose Sprite from hosted image.
-    this.gooseSprite = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
-    this.gooseSprite.hide();
+    this.gooseSpriteRight = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
+    this.gooseSpriteRight.hide();
+
+    this.gooseSpriteLeft = createImg('https://cdn1.imggmi.com/uploads/2018/10/1/b1d765c22c39a2811ed8e8e7c7bb579d-full.png');
+    this.gooseSpriteLeft.hide();
 
   }
 
@@ -52,7 +55,11 @@ class Goose extends Entity {
     fill(255);
     //super.show();
     // Draws Goose Sprite
-    image(this.gooseSprite, this.x, this.y);
+    if (this.isFacingRight()) {
+      image(this.gooseSpriteRight, this.x, this.y);
+    } else {
+      image(this.gooseSpriteLeft, this.x, this.y);
+    }
     this.headHitbox.show();
     this.bodyHitbox.show();
 
@@ -91,6 +98,7 @@ class Goose extends Entity {
   }
 
   updateHitboxes() {
+    // change orientation of hitboxes based on what direction goose is facing.
     if (this.isFacingRight()) {
       this.bodyHitbox = new Rectangle(this.x + bodyHitboxOffsetX, this.y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
       this.headHitbox = new Rectangle(this.x + headHitboxOffsetX, this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
@@ -111,6 +119,7 @@ class Goose extends Entity {
     this.deltaY = -this.deltaY;
   }
 
+  // randomly inverts goose direction.
   invertDirectionRandom() {
     let hasInverted = false;
     if (Math.random() < 0.5) {
