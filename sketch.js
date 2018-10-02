@@ -2,28 +2,29 @@
    TODO:
     - Possibly make panic timer decrease with shots missed.
     - Add animated geese.
-    - Make shots detect for hitboxes instead of big goose rectangle.
     - Make geese have random sprites.
     - Add countdown timer.
     - Make an actual round system.
     - Tweak geese speed, make it scale with rounds.
     - Create Dog class in general.
-    - Create scoring system
     - Complete art, sounds, music, etc.
         + Make screen flash when you shoot, for effect
         + Make animations for Dog.
         + Display round, game over, etc. (text class)
  */
+
 const screenW = 320 * 2;
 const screenH = 180 * 2;
-
 const playfieldW = screenW;
 const playfieldH = screenH - 100;
 
+// Sprites
 let backgroundImage;
 let foregroundImage;
 let fontImage;
 let redGooseImage;
+let tempGooseLeftImage;
+let tempGooseRightImage;
 
 let playfield;
 let hud;
@@ -37,6 +38,10 @@ function preload() {
     this.fontImage.hide();
     this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
     this.redGooseImage.hide();
+    this.tempGooseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/1/b1d765c22c39a2811ed8e8e7c7bb579d-full.png');
+    this.tempGooseLeftImage.hide();
+    this.tempGooseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
+    this.tempGooseRightImage.hide();
 }
 
 function setup() {
@@ -50,7 +55,7 @@ function mousePressed() {
     if (this.hud.ammoAvailable()) {
         this.hud.shoot();
         let result = this.playfield.wasAGooseHitAt(mouseX, mouseY);
-        if (result === "Body was shot" || result === "Head was shot" ) {
+        if (result === "Body was shot" || result === "Head was shot") {
             this.hud.reload();
         }
         this.hud.parseResultOfShot(result);
@@ -73,23 +78,54 @@ function draw() {
     this.hud.update();
 }
 
-function getFontImage(){
+// Getters for sprites
+function getFontImage() {
     return this.fontImage;
 }
 
-function getRedGooseImage(){
+function getRedGooseImage() {
     return this.redGooseImage;
 }
 
-// gets the ammo left from the hud object (i don't know of any other way to do this lol)
+function getTempGooseLeftImage(){
+    return this.tempGooseLeftImage;
+}
+
+function getTempGooseRightImage(){
+    return this.tempGooseRightImage;
+}
+
+// Getters for HUD
 function getAmmoRemaining() {
-  return this.hud.currentAmmo;
+    return this.hud.currentAmmo;
 }
 
 function getCurrentRound() {
-  return this.hud.round;
+    return this.hud.round;
+}
+
+function getProgressIndex() {
+    return this.hud.progressIndex;
+}
+
+function getDucksPerRound() {
+    return this.hud.ducksPerRound;
 }
 
 function getNumShotsMissed() {
-  return this.hud.shotsFired - this.hud.hits;
+    return this.hud.shotsFired - this.hud.hits;
+}
+
+// Global access to functions in Playfield
+function spawnNewGoose() {
+    this.playfield.spawnNewGoose();
+}
+
+function lastGooseCanFlyAway() {
+    this.playfield.lastGooseCanFlyAway();
+}
+
+// Global access to functions in HUD
+function reload() {
+    this.hud.reload();
 }

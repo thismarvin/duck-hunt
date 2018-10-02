@@ -1,6 +1,9 @@
 class HUD {
     constructor() {
         this.totalAmmo = 3;
+        this.ducksPerRound = 10;
+
+        this.waitForNextGooseQueue = false;
         this.currentAmmo = this.totalAmmo;
         this.shotsFired = 0;
         this.hits = 0;
@@ -8,44 +11,44 @@ class HUD {
         this.round = 1;
         this.gooseWorth = 10;
         this.headShotMultiplier = 3;
-        this.ducksPerRound = 10;
         this.progress = [];
         for (let i = 0; i < this.ducksPerRound; i++) {
             this.progress[i] = " ";
         }
         this.progressIndex = 0;
-        this.timeLeft = 1000 * 5; // not sure how im going to implement this yet
-
         this.redGooseSprites = [];
         this.scoreText = new Text(256 * 2, 3 * 2, "0000");
     }
 
     reset() {
-        this.totalAmmo = 3;
+        this.waitForNextGooseQueue = false;
         this.currentAmmo = this.totalAmmo;
         this.shotsFired = 0;
         this.hits = 0;
         this.score = 0;
         this.round = 1;
-        this.headShotMultiplier = 3;
         this.gooseWorth = 10;
-        this.ducksPerRound = 10;
+        this.headShotMultiplier = 3;
         this.progress = [];
         for (let i = 0; i < this.ducksPerRound; i++) {
             this.progress[i] = " ";
         }
         this.progressIndex = 0;
-        this.timeLeft = 1000 * 5;
         this.redGooseSprites = [];
         this.scoreText = new Text(256 * 2, 3 * 2, "0000");
     }
 
     reload() {
         this.currentAmmo = this.totalAmmo;
+        this.waitForNextGooseQueue = false;
     }
 
     ammoAvailable() {
-        return this.currentAmmo > 0;
+        let result = this.currentAmmo > 0;
+        if (this.waitForNextGooseQueue) {
+            result = false;
+        }
+        return result;
     }
 
     shoot() {
@@ -59,15 +62,15 @@ class HUD {
         if (result === "Body was shot" || result === "Head was shot") {
             this.hits++;
             this.progress[this.progressIndex] = "HIT";
-            this.redGooseSprites.push(new Sprite(202 + this.progressIndex * 32, 312, 32, 32, getRedGooseImage()));
-
+            this.redGooseSprites.push(new Sprite(101 * 2 + this.progressIndex * 32, 156 * 2, 32, 32, getRedGooseImage()));
+            this.progressIndex++;          
+            this.waitForNextGooseQueue = true;
             if (result === "Body was shot") {
                 this.incrementScore(this.gooseWorth * this.round);
             }
             else if (result === "Head was shot") {
                 this.incrementScore(this.gooseWorth * this.round * this.headShotMultiplier);
             }
-            this.progressIndex = this.progressIndex + 1 < this.ducksPerRound ? ++this.progressIndex : this.progressIndex;
         }
     }
 
@@ -85,12 +88,29 @@ class HUD {
     }
 
     roundLogic() {
-        if (this.currentAmmo <= 0) {
+        if (this.progressIndex < this.ducksPerRound && this.currentAmmo <= 0 && !this.waitForNextGooseQueue) {
             this.progress[this.progressIndex] = "MISS";
-            this.progressIndex = this.progressIndex + 1 < this.ducksPerRound ? ++this.progressIndex : this.progressIndex;
-            //this.currentAmmo = this.totalAmmo;
-            // you need to call the goose to fly away!
+            this.progressIndex++;
+            this.waitForNextGooseQueue = true;
+            lastGooseCanFlyAway();
         }
+
+        if (this.progressIndex >= this.ducksPerRound) {
+            this.initializeNextRound();
+        }
+    }
+
+    initializeNextRound() {
+        this.round++;
+        this.progress = [];
+        for (let i = 0; i < this.ducksPerRound; i++) {
+            this.progress[i] = " ";
+        }
+        this.progressIndex = 0;
+        this.redGooseSprites = [];
+        // these can increase the higher the round
+        this.headShotMultiplier = 3;
+        this.gooseWorth = 10;
     }
 
     update() {
@@ -110,6 +130,7 @@ class HUD {
             rect(158 - i * 16, 312, 16, 28);
         }
 
+        // Draws score
         this.scoreText.show();
     }
 }

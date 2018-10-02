@@ -13,7 +13,7 @@ const bodyHitboxOffsetX = 28;
 const bodyHitboxOffsetY = 19;
 
 class Goose extends Entity {
-  constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
+  constructor(x, y, speed, initPanicFactor = 0.5, maxPanicFactor = 0.8) {
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
     this.deltaX = (Math.random() * 0.8 + 0.2) * speed; // change later, make min dynamic.
@@ -37,12 +37,8 @@ class Goose extends Entity {
     this.maxPanicFactor = maxPanicFactor;
 
     // Creates Goose Sprite from hosted image.
-    this.gooseSpriteRight = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
-    this.gooseSpriteRight.hide();
-
-    this.gooseSpriteLeft = createImg('https://cdn1.imggmi.com/uploads/2018/10/1/b1d765c22c39a2811ed8e8e7c7bb579d-full.png');
-    this.gooseSpriteLeft.hide();
-
+    this.gooseSpriteRight = getTempGooseRightImage();
+    this.gooseSpriteLeft = getTempGooseLeftImage();
   }
 
   update() {
@@ -60,15 +56,17 @@ class Goose extends Entity {
     } else {
       image(this.gooseSpriteLeft, this.x, this.y);
     }
-    this.headHitbox.show();
-    this.bodyHitbox.show();
+
+    // Debugging
+    //this.headHitbox.show();
+    //this.bodyHitbox.show();
 
   }
 
   move() {
     if (this.shouldFall) {
-      super.move(0, 1);
-      this.moveHitboxes(0, 1);
+      super.move(0, 4); // made them go down faster
+      this.moveHitboxes(0, 4); // made them go down faster
       if (this.y > screenH) {
         this.hasFallen = true;
         this.shouldFall = false;
@@ -78,8 +76,8 @@ class Goose extends Entity {
       this.moveHitboxes(this.deltaX, this.deltaY);
       this.collision();
     } else if (!this.hasFallen && this.shouldFlyAway) {
-      super.move(0, -1);
-      this.moveHitboxes(0, -1);
+      super.move(0, -2); // made them go up faster
+      this.moveHitboxes(0, -2); // made them go up faster
       if (this.y + gooseHeight < 0) {
         this.dead = true;
       }
@@ -118,9 +116,9 @@ class Goose extends Entity {
       this.headHitbox = new Rectangle(this.x + headHitboxOffsetX, this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
     } else {
       this.bodyHitbox = new Rectangle(this.x + gooseWidth - bodyHitboxOffsetX - bodyHitboxW,
-         this.y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
+        this.y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
       this.headHitbox = new Rectangle(this.x + gooseWidth - headHitboxOffsetX - headHitboxW,
-         this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
+        this.y + headHitboxOffsetY, headHitboxW, headHitboxH);
     }
   }
 
