@@ -30,11 +30,14 @@ class Playfield {
 
   wasAGooseHitAt(x, y) {
     let mouseCollRect = new Rectangle(x, y, 1, 1);
-    let result = false;
+    let result = "Missed";
     this.geese.forEach(goose => {
-      if (mouseCollRect.intersects(goose.bodyHitbox) || mouseCollRect.intersects(goose.headHitbox)) {
+      if (mouseCollRect.intersects(goose.bodyHitbox)) {
         goose.shouldFall = true;
-        result = true;
+        result = "Body was shot";
+      } else if (mouseCollRect.intersects(goose.headHitbox)) {
+        goose.shouldFall = true;
+        result = "Head was shot";
       } else {
         goose.invertDirectionRandom();
       }
@@ -51,7 +54,7 @@ class Playfield {
   }
 
   update() {
-    this,this.updateGeese();
+    this.updateGeese();
     //this.dog.update();
   }
 }
