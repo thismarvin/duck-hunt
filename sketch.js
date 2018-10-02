@@ -22,6 +22,8 @@ const playfieldH = screenH - 100;
 
 let backgroundImage;
 let foregroundImage;
+let fontImage;
+let redGooseImage;
 
 let playfield;
 let hud;
@@ -31,6 +33,10 @@ function preload() {
     this.backgroundImage.hide();
     this.foregroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/19df8e9052b7d8e2fa6a7fa98e6c1991-full.png');
     this.foregroundImage.hide();
+    this.fontImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/2/f99cd60631585be006760c659cdf41df-full.png');
+    this.fontImage.hide();
+    this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
+    this.redGooseImage.hide();
 }
 
 function setup() {
@@ -44,7 +50,7 @@ function mousePressed() {
     if (this.hud.ammoAvailable()) {
         this.hud.shoot();
         let result = this.playfield.wasAGooseHitAt(mouseX, mouseY);
-        if (result) {
+        if (result === "Body was shot" || result === "Head was shot" ) {
             this.hud.reload();
         }
         this.hud.parseResultOfShot(result);
@@ -65,6 +71,14 @@ function draw() {
     this.playfield.update();
     image(this.foregroundImage, 0, 0);
     this.hud.update();
+}
+
+function getFontImage(){
+    return this.fontImage;
+}
+
+function getRedGooseImage(){
+    return this.redGooseImage;
 }
 
 // gets the ammo left from the hud object (i don't know of any other way to do this lol)
