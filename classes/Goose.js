@@ -1,5 +1,6 @@
 const gooseWidth = 120;
 const gooseHeight = 66;
+const minSpeed = 0.5; // represents fraction of speed.
 const minTime = 3;
 
 // hitbox constants
@@ -16,8 +17,8 @@ class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
-    this.deltaX = (Math.random() * 0.8 + 0.2) * speed; // change later, make min dynamic.
-    this.deltaY = (Math.random() * 0.8 + 0.2) * speed; // change later, make min dynamic.
+    this.deltaX = (Math.random() * (1 - minSpeed) + minSpeed) * speed;
+    this.deltaY = (Math.random() * (1 - minSpeed) + minSpeed) * speed;
     this.bodyHitbox = new Rectangle(x + bodyHitboxOffsetX, y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
     this.headHitbox = new Rectangle(x + headHitboxOffsetX, y + headHitboxOffsetY, headHitboxW, headHitboxH);
 
