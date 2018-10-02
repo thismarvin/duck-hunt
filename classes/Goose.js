@@ -16,8 +16,8 @@ class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor=0.5, maxPanicFactor=0.8) {
     super(x, y, gooseWidth, gooseHeight);
     this.speed = speed; // not really the magnitude of velocity vector, but works similarly
-    this.deltaX = Math.random() * speed + 0.2; // change later, make min dynamic.
-    this.deltaY = Math.random() * speed + 0.2; // change later, make min dynamic.
+    this.deltaX = (Math.random() * 0.8 + 0.2) * speed; // change later, make min dynamic.
+    this.deltaY = (Math.random() * 0.8 + 0.2) * speed; // change later, make min dynamic.
     this.bodyHitbox = new Rectangle(x + bodyHitboxOffsetX, y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
     this.headHitbox = new Rectangle(x + headHitboxOffsetX, y + headHitboxOffsetY, headHitboxW, headHitboxH);
 
@@ -66,7 +66,6 @@ class Goose extends Entity {
   }
 
   move() {
-    console.log(getAmmoRemaining());
     if (this.shouldFall) {
       super.move(0, 1);
       this.moveHitboxes(0, 1);
@@ -77,19 +76,33 @@ class Goose extends Entity {
     } else if (!this.hasFallen && !this.shouldFlyAway) {
       super.move(this.deltaX, this.deltaY);
       this.moveHitboxes(this.deltaX, this.deltaY);
-      if (this.x + gooseWidth > playfieldW || this.x < 0) {
-        this.deltaX = -this.deltaX;
-        this.updateHitboxes();
-      }
-      if (this.y + gooseHeight > playfieldH || this.y < 0) {
-        this.deltaY = -this.deltaY;
-      }
-    } else if (this.shouldFlyAway) {
+      this.collision();
+    } else if (!this.hasFallen && this.shouldFlyAway) {
       super.move(0, -1);
       this.moveHitboxes(0, -1);
       if (this.y + gooseHeight < 0) {
         this.dead = true;
       }
+    }
+  }
+
+  collision() {
+    if (this.x + gooseWidth > playfieldW || this.x < 0) {
+      if (this.x + gooseWidth > playfieldW) {
+        this.x = playfieldW - gooseWidth;
+      } else {
+        this.x = 0;
+      }
+      this.deltaX = -this.deltaX;
+      this.updateHitboxes();
+    }
+    if (this.y + gooseHeight > playfieldH || this.y < 0) {
+      if (this.y + gooseHeight > playfieldH) {
+        this.y = playfieldH - gooseHeight;
+      } else {
+        this.y = 0;
+      }
+      this.deltaY = -this.deltaY;
     }
   }
 
