@@ -23,8 +23,8 @@ let backgroundImage;
 let foregroundImage;
 let fontImage;
 let redGooseImage;
-let tempGooseLeftImage;
-let tempGooseRightImage;
+let geeseRightImage;
+let geeseLeftImage;
 
 let playfield;
 let hud;
@@ -38,10 +38,10 @@ function preload() {
     this.fontImage.hide();
     this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
     this.redGooseImage.hide();
-    this.tempGooseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/1/b1d765c22c39a2811ed8e8e7c7bb579d-full.png');
-    this.tempGooseLeftImage.hide();
-    this.tempGooseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/30/644df43a5460f47884fbdbe315d413a2-full.png');
-    this.tempGooseRightImage.hide();
+    this.geeseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/3/e56c9fffcc423412bf673d7865f08aed-full.png');
+    this.geeseRightImage.hide();
+    this.geeseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/3/c050d65e661848275bcdb37e99463398-full.png');
+    this.geeseLeftImage.hide();
 }
 
 function setup() {
@@ -87,13 +87,14 @@ function getRedGooseImage() {
     return this.redGooseImage;
 }
 
-function getTempGooseLeftImage(){
-    return this.tempGooseLeftImage;
+function getGeeseRightImage(){
+    return this.geeseRightImage;
 }
 
-function getTempGooseRightImage(){
-    return this.tempGooseRightImage;
+function getGeeseLeftImage(){
+    return this.geeseLeftImage;
 }
+
 
 // Getters for HUD
 function getAmmoRemaining() {

@@ -7,11 +7,11 @@ const minTime = 3;
 const headHitboxW = 22;
 const headHitboxH = 22;
 const headHitboxOffsetX = 86;
-const headHitboxOffsetY = 0;
+const headHitboxOffsetY = 28;
 const bodyHitboxW = 36;
 const bodyHitboxH = 28;
 const bodyHitboxOffsetX = 28;
-const bodyHitboxOffsetY = 19;
+const bodyHitboxOffsetY = 44;
 
 class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor = 0.5, maxPanicFactor = 0.8) {
@@ -40,9 +40,9 @@ class Goose extends Entity {
     this.panicFactor = initPanicFactor;
     this.maxPanicFactor = maxPanicFactor;
 
-    // Creates Goose Sprite from hosted image.
-    this.gooseSpriteRight = getTempGooseRightImage();
-    this.gooseSpriteLeft = getTempGooseLeftImage();
+    let randomGoose = floor(Math.random() * 3);
+    this.gooseSprite = new Sprite(this.x, this.y, 64 * 2, 48 * 2, getGeeseRightImage(), 0, randomGoose);
+
   }
 
   update() {
@@ -56,15 +56,16 @@ class Goose extends Entity {
     //super.show();
     // Draws Goose Sprite
     if (this.isFacingRight()) {
-      image(this.gooseSpriteRight, this.x, this.y);
+      this.gooseSprite.setSpriteSheet(getGeeseRightImage()); //temp?
     } else {
-      image(this.gooseSpriteLeft, this.x, this.y);
+      this.gooseSprite.setSpriteSheet(getGeeseLeftImage()); // temp?
     }
-
+    this.gooseSprite.setLocation(this.x, this.y);
+    this.gooseSprite.update();
+    this.gooseSprite.show();
     // Debugging
     //this.headHitbox.show();
     //this.bodyHitbox.show();
-
   }
 
   move() {
