@@ -2,6 +2,8 @@ class HUD {
     constructor() {
         this.totalAmmo = 3;
         this.ducksPerRound = 10;
+        this.flashTimer = new Timer(500);
+        this.flash = false;
 
         this.waitForNextGooseQueue = false;
         this.currentAmmo = this.totalAmmo;
@@ -18,6 +20,7 @@ class HUD {
         this.progressIndex = 0;
         this.redGooseSprites = [];
         this.scoreText = new Text(256 * 2, 3 * 2, "0000");
+        this.roundText = new Text(4 * 2, 157 * 2, "R" + this.round);
     }
 
     reset() {
@@ -63,7 +66,7 @@ class HUD {
             this.hits++;
             this.progress[this.progressIndex] = "HIT";
             this.redGooseSprites.push(new Sprite(101 * 2 + this.progressIndex * 32, 156 * 2, 32, 32, getRedGooseImage()));
-            this.progressIndex++;          
+            this.progressIndex++;
             this.waitForNextGooseQueue = true;
             if (result === "Body was shot") {
                 this.incrementScore(this.gooseWorth * this.round);
@@ -102,6 +105,7 @@ class HUD {
 
     initializeNextRound() {
         this.round++;
+        this.roundText = new Text(4 * 2, 157 * 2, "R" + this.round);
         this.progress = [];
         for (let i = 0; i < this.ducksPerRound; i++) {
             this.progress[i] = " ";
@@ -124,6 +128,17 @@ class HUD {
             sprite.show();
         });
 
+        if (this.flashTimer.isFinished()) {
+            this.flash = !this.flash;
+            this.flashTimer.reset();
+        }
+
+        if (this.flash) {
+            fill(0);
+            rect(101 * 2 + this.progressIndex * 16 * 2, 156 * 2, 16 * 2, 16 * 2);
+        }
+
+
         //  Blackouts bullets in HUD that were already shot .
         for (let i = this.totalAmmo - this.currentAmmo - 1; i >= 0; i--) {
             fill(0);
@@ -132,5 +147,6 @@ class HUD {
 
         // Draws score
         this.scoreText.show();
+        this.roundText.show();
     }
 }
