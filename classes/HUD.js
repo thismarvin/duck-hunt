@@ -128,16 +128,15 @@ class HUD {
             sprite.show();
         });
 
+        // Flashes current goose index.
         if (this.flashTimer.isFinished()) {
             this.flash = !this.flash;
             this.flashTimer.reset();
         }
-
         if (this.flash) {
             fill(0);
             rect(101 * 2 + this.progressIndex * 16 * 2, 156 * 2, 16 * 2, 16 * 2);
         }
-
 
         //  Blackouts bullets in HUD that were already shot .
         for (let i = this.totalAmmo - this.currentAmmo - 1; i >= 0; i--) {
