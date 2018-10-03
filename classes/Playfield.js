@@ -18,14 +18,13 @@ class Playfield {
     this.queueNewGoose = false;
     if (getProgressIndex() < getDucksPerRound()) {
       reload();
-      if (floor(Math.random() * 2) % 2 == 0){
-        this.geese.push(new Goose(16, 16 + floor(Math.random() * playfieldH / 2) , 5));
+      if (floor(Math.random() * 2) % 2 == 0) {
+        this.geese.push(new Goose(16, 16 + floor(Math.random() * playfieldH / 2), 5));
       }
-      else{
+      else {
         this.geese.push(new Goose(playfieldW - 60 * 2, 16 + floor(Math.random() * playfieldH / 2), 5));
         this.geese[this.geese.length - 1].invertDirection();
       }
-      
     }
   }
 
