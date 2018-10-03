@@ -1,11 +1,11 @@
 class Timer {
   constructor(duration) {
-    this.lastUpdate = Math.floor(Date.now() / 1000); // works in seconds.
+    this.lastUpdate = Date.now()
     this.duration = duration;
   }
 
   isFinished() {
-    let delta = Math.floor(Date.now() / 1000) - this.lastUpdate;
+    let delta = Math.floor(Date.now()) - this.lastUpdate;
     if (delta >= this.duration) {
       return true;
     }
@@ -13,6 +13,6 @@ class Timer {
   }
 
   reset() {
-    this.lastUpdate = Math.floor(Date.now() / 1000);
+    this.lastUpdate = Math.floor(Date.now());
   }
 }

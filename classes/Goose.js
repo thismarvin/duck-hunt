@@ -26,7 +26,7 @@ class Goose extends Entity {
     this.shouldFall = false; // true if the goose is killed and needs to fall
     this.shouldFlyAway = false; // true if the goose should fly away
 
-    let duration = 10 - getCurrentRound();
+    let duration = 10 * 1000 - getCurrentRound() * 1000;
     if (duration < minTime) {
       duration = minTime;
     }
