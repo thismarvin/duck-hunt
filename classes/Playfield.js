@@ -36,6 +36,7 @@ class Playfield {
       }
       // temporary
       else if (this.geese[i].hasFallen) {
+        this.dog.queueGoose(this.geese[i]);
         this.geese.splice(i, 1);
         this.queueNewGoose = true;
       }
@@ -73,7 +74,7 @@ class Playfield {
   }
 
   update() {
+    this.dog.update();
     this.updateGeese();
-    //this.dog.update();
   }
 }
