@@ -25,6 +25,8 @@ let fontImage;
 let redGooseImage;
 let geeseRightImage;
 let geeseLeftImage;
+let lionGrabImage;
+let deadGeeseImage;
 
 let playfield;
 let hud;
@@ -38,10 +40,14 @@ function preload() {
     this.fontImage.hide();
     this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
     this.redGooseImage.hide();
-    this.geeseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/3/e56c9fffcc423412bf673d7865f08aed-full.png');
+    this.geeseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/7317b96072ef3c842c8ebe01f6fda56c-full.png');
     this.geeseRightImage.hide();
-    this.geeseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/3/c050d65e661848275bcdb37e99463398-full.png');
+    this.geeseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/1bd4fdd3512bf37eeac3e9d92d69398b-full.png');
     this.geeseLeftImage.hide();
+    this.lionGrabImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/c2ca838d8b85de1c3bf708b6888a59b4-full.png');
+    this.lionGrabImage.hide();
+    this.deadGeeseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/7ec40ca093fd6877f45a4622227b2124-full.png');
+    this.deadGeeseImage.hide();
 }
 
 function setup() {
