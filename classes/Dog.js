@@ -1,5 +1,5 @@
 const dogW = 80;
-const dogH = 200;
+const dogH = 150;
 const moveSpeed = 1;
 class Dog extends Entity {
   constructor() {
@@ -69,7 +69,7 @@ class Dog extends Entity {
       this.setLocation(this.x, playfieldH - dogH);
     } else if (this.needsToMoveDown) {
       if (this.y < playfieldH) {
-        this.move(0, moveSpeed);
+        this.move(0, moveSpeed * 2);
       } else {
         this.needsToMoveDown = false;
         return false;
