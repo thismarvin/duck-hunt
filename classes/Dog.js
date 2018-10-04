@@ -1,6 +1,6 @@
 const dogW = 80;
 const dogH = 200;
-const moveSpeed = 3;
+const moveSpeed = 1;
 class Dog extends Entity {
   constructor() {
     super(0, playfieldH, dogW, dogH);
@@ -8,6 +8,8 @@ class Dog extends Entity {
     this.isPickingUpGoose = false;
     this.needsToMoveDown = false;
     this.isLaughing = false;
+    this.grabSprite = new Sprite(0, 0, 45 * 2, 48 * 2, getLionGrabImage());
+    this.deadGooseSprite = new Sprite(0, 0, 25 * 2, 63 * 2, getDeadGeeseImage());
   }
 
   update() {
@@ -17,7 +19,13 @@ class Dog extends Entity {
   }
 
   show() {
-    super.show();
+    //super.show();
+    if (this.isPickingUpGoose) {
+      this.grabSprite.setLocation(this.x, this.y);
+      this.deadGooseSprite.setLocation(this.x + 32 * 2,this.y);
+      this.grabSprite.show();
+      this.deadGooseSprite.show();
+    }
   }
 
   queueGoose(goose) {
@@ -56,7 +64,7 @@ class Dog extends Entity {
   moveUpAndDown() {
     if (this.y + dogH > playfieldH && !this.needsToMoveDown) {
       this.move(0, -moveSpeed);
-    } else if (!this.needsToMoveDown){
+    } else if (!this.needsToMoveDown) {
       this.needsToMoveDown = true;
       this.setLocation(this.x, playfieldH - dogH);
     } else if (this.needsToMoveDown) {
