@@ -134,6 +134,7 @@ class Goose extends Entity {
   invertDirection() {
     this.deltaX = -this.deltaX;
     this.deltaY = -this.deltaY;
+    this.updateHitboxes();
   }
 
   // randomly inverts goose direction in unpredicatble ways.

@@ -24,7 +24,6 @@ class Playfield {
       else {
         this.geese.push(new Goose(playfieldW - 60 * 2, 16 + floor(Math.random() * playfieldH / 2), 5));
         this.geese[this.geese.length - 1].invertDirection();
-        this.geese[this.geese.length - 1].updateHitboxes();
       }
     }
   }
