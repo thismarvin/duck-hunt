@@ -96,6 +96,13 @@ function getGeeseLeftImage(){
     return this.geeseLeftImage;
 }
 
+function getLionGrabImage(){
+    return this.lionGrabImage;
+}
+
+function getDeadGeeseImage(){
+    return this.deadGeeseImage;
+}
 
 // Getters for HUD
 function getAmmoRemaining() {
