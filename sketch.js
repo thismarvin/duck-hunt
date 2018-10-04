@@ -41,7 +41,7 @@ function preload() {
     this.geeseLeftImage.hide();
     this.lionGrabImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/c2ca838d8b85de1c3bf708b6888a59b4-full.png');
     this.lionGrabImage.hide();
-    this.deadGeeseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/7ec40ca093fd6877f45a4622227b2124-full.png');
+    this.deadGeeseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/83316a2ec11ab84718688c030f3e88e5-full.png');
     this.deadGeeseImage.hide();
 }
 
