@@ -88,8 +88,8 @@ class Dog extends Entity {
 
   moveToNextGoose() {
     let target = this.geeseToPickup[0];
-    let xPos = target.x //+ Math.floor(target.x / 2) - Math.floor(dogW / 2);
-    this.setLocation(xPos, playfieldH);
+    let xPos = target.x; //+ Math.floor(target.x / 2) - Math.floor(dogW / 2);
+    this.setLocation(xPos, playfieldH - 30 * 2);
   }
 
 }
