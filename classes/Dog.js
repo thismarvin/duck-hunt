@@ -31,6 +31,8 @@ class Dog extends Entity {
 
   queueGoose(goose) {
     this.geeseToPickup.push(goose);
+    this.deadGooseIndex = goose.gooseIndex;
+    this.deadGooseSprite.sourceX = 26 * 2 * this.deadGooseIndex;
   }
 
   pickupNextGoose() {
