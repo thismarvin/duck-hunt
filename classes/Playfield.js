@@ -4,6 +4,7 @@ class Playfield {
     this.dog = new Dog();
     this.isGameOver = false;
     this.queueNewGoose = false;
+    this.pickingUpGoose = false;
     this.spawnNewGoose();
   }
 
@@ -33,12 +34,11 @@ class Playfield {
       if (this.geese[i].dead) {
         this.geese.splice(i, 1);
         this.queueNewGoose = true;
+        this.pickingUpGoose = false;
       }
-      // temporary
-      else if (this.geese[i].hasFallen) {
+      else if (this.geese[i].hasFallen && !this.pickingUpGoose) {
         this.dog.queueGoose(this.geese[i]);
-        this.geese.splice(i, 1);
-        this.queueNewGoose = true;
+        this.pickingUpGoose = true;
       }
     }
     if (this.queueNewGoose) {
