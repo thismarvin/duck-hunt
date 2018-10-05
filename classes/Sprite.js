@@ -29,7 +29,6 @@ class Sprite {
             this.sourceX = this.frame * this.sWidth;
             this.timer.reset();
         }
-
     }
 
     show() {
