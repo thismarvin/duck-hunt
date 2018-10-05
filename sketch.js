@@ -33,7 +33,7 @@ function preload() {
     this.foregroundImage.hide();
     this.fontImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/2/f99cd60631585be006760c659cdf41df-full.png');
     this.fontImage.hide();
-    this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/27/b412c3e57c886f822060a44772606d68-full.png');
+    this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/823a93c264e1b39e5262b03ad63b78f2-full.png');
     this.redGooseImage.hide();
     this.geeseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/7317b96072ef3c842c8ebe01f6fda56c-full.png');
     this.geeseRightImage.hide();
@@ -66,9 +66,13 @@ function mousePressed() {
 function keyPressed() {
     // Press R to reset HUD and Playfield.
     if (keyCode === 82) {
-        this.hud.reset();
-        this.playfield.reset();
+        masterReset();
     }
+}
+
+function masterReset(){
+    this.hud.reset();
+    this.playfield.reset();
 }
 
 function draw() {
@@ -132,6 +136,10 @@ function spawnNewGoose() {
 
 function lastGooseCanFlyAway() {
     this.playfield.lastGooseCanFlyAway();
+}
+
+function toggleGameOver(){
+    this.playfield.toggleGameOver();
 }
 
 // Global access to functions in HUD

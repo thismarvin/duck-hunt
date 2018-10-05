@@ -5,6 +5,8 @@ class Playfield {
     this.isGameOver = false;
     this.queueNewGoose = false;
     this.pickingUpGoose = false;
+    this.gameOverText = new Text(((320 - 14 * 9) / 2) * 2, 180 / 2 * 2 - 19 * 3, "GAME OVER");
+    this.gameOverResetTimer = new Timer(5000);
     this.spawnNewGoose();
   }
 
@@ -13,6 +15,11 @@ class Playfield {
     this.dog = new Dog();
     this.isGameOver = false;
     this.spawnNewGoose();
+  }
+
+  toggleGameOver() {
+    this.isGameOver = true;
+    this.gameOverResetTimer.reset();
   }
 
   spawnNewGoose() {
@@ -73,8 +80,22 @@ class Playfield {
     this.removeGeese();
   }
 
+  endConditionLogic() {
+    if (this.isGameOver && this.gameOverResetTimer.isFinished()) {
+      masterReset();
+    }
+  }
+
   update() {
     this.dog.update();
     this.updateGeese();
+    this.endConditionLogic();
+    this.show();
+  }
+
+  show() {
+    if (this.isGameOver) {
+      this.gameOverText.show();
+    }
   }
 }
