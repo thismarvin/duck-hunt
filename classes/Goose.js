@@ -40,8 +40,8 @@ class Goose extends Entity {
     this.panicFactor = initPanicFactor;
     this.maxPanicFactor = maxPanicFactor;
 
-    let randomGoose = floor(Math.random() * 3);
-    this.gooseSprite = new Sprite(this.x, this.y, 64 * 2, 48 * 2, getGeeseRightImage(), 0, randomGoose);
+    this.gooseIndex = floor(Math.random() * 3);
+    this.gooseSprite = new Sprite(this.x, this.y, 64 * 2, 48 * 2, getGeeseRightImage(), 0, this.gooseIndex);
 
   }
 

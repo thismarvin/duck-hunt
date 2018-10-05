@@ -10,6 +10,7 @@ class Dog extends Entity {
     this.isLaughing = false;
     this.grabSprite = new Sprite(0, 0, 45 * 2, 48 * 2, getLionGrabImage());
     this.deadGooseSprite = new Sprite(0, 0, 25 * 2, 63 * 2, getDeadGeeseImage());
+    this.deadGooseIndex = 0;
   }
 
   update() {
