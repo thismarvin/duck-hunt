@@ -52,17 +52,21 @@ class Goose extends Entity {
   }
 
   show() {
-    fill(255);
-    //super.show();
     // Draws Goose Sprite
+    this.gooseSprite.setLocation(this.x, this.y);
     if (this.isFacingRight()) {
       this.gooseSprite.setSpriteSheet(getGeeseRightImage()); //temp?
     } else {
       this.gooseSprite.setSpriteSheet(getGeeseLeftImage()); // temp?
+    } 
+    if (!this.shouldFall){
+      this.gooseSprite.update();  
     }
-    this.gooseSprite.setLocation(this.x, this.y);
-    this.gooseSprite.update();
+    else {
+      this.gooseSprite.sourceX = 64 * 2 * 3;
+    }
     this.gooseSprite.show();
+
     // Debugging
     //this.headHitbox.show();
     //this.bodyHitbox.show();
@@ -70,8 +74,8 @@ class Goose extends Entity {
 
   move() {
     if (this.shouldFall) {
-      super.move(0, 4); // made them go down faster
-      this.moveHitboxes(0, 4); // made them go down faster
+      super.move(0, 4);
+      this.moveHitboxes(0, 4);
       if (this.y > screenH) {
         this.hasFallen = true;
         this.shouldFall = false;
@@ -81,8 +85,8 @@ class Goose extends Entity {
       this.moveHitboxes(this.deltaX, this.deltaY);
       this.collision();
     } else if (!this.hasFallen && this.shouldFlyAway) {
-      super.move(0, -2); // made them go up faster
-      this.moveHitboxes(0, -2); // made them go up faster
+      super.move(0, -2);
+      this.moveHitboxes(0, -2);
       if (this.y + gooseHeight < 0) {
         this.dead = true;
       }
