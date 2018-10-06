@@ -51,6 +51,7 @@ function preload() {
 function setup() {
     createCanvas(screenW, screenH);
     this.hud = new HUD();
+
     this.playfield = new Playfield();
 }
 

@@ -127,6 +127,7 @@ class HUD {
             toggleGameOver();
             return;
         }
+
         this.round++;
         this.killsInRound = 0;
         this.roundText = new Text(4 * 2, 157 * 2, "R" + this.round);
@@ -136,7 +137,6 @@ class HUD {
         }
         this.progressIndex = 0;
         this.redGooseSprites = [];
-        // these can increase the higher the round
         this.headShotMultiplier = 3 * this.round;
         this.gooseWorth = 10 * this.round;
     }
