@@ -52,7 +52,7 @@ function setup() {
 }
 
 function mousePressed() {
-    // Only registers a shot if the mouse is within the sketch
+    // Only registers a shot if the mouse is within the sketch.
     if (mouseX < 0 || mouseX > screenW || mouseY < 0 || mouseY > screenH)
         return;
     // Handles when the player shoots at a goose.
