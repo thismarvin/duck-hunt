@@ -47,7 +47,7 @@ class Dog extends Entity {
       this.isPickingUpGoose = true;
     } else if (this.isPickingUpGoose) {
       if (!this.moveUpAndDown()) {
-        this.setLocation(0, playfieldH);
+        this.setLocation(0, playfieldH); // reset position
         this.killCurrentGoose();
         this.isPickingUpGoose = false;
       }
@@ -63,7 +63,7 @@ class Dog extends Entity {
       let mid = Math.floor(playfieldW / 2 - dogW / 2);
       this.setLocation(mid, this.y);
       if (!this.moveUpAndDown()) {
-        this.setLocation(0, playfieldW);
+        this.setLocation(0, playfieldH); // reset position
         this.isLaughing = false;
       }
     }
