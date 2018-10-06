@@ -22,6 +22,7 @@ let geeseRightImage;
 let geeseLeftImage;
 let lionGrabImage;
 let deadGeeseImage;
+let lionLaughImage;
 
 let playfield;
 let hud;
@@ -43,6 +44,8 @@ function preload() {
     this.lionGrabImage.hide();
     this.deadGeeseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/83316a2ec11ab84718688c030f3e88e5-full.png');
     this.deadGeeseImage.hide();
+    this.lionLaughImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/7/dffeeaf2f8670fdab45754702f47377c-full.png');
+    this.lionLaughImage.hide();
 }
 
 function setup() {
@@ -109,6 +112,10 @@ function getLionGrabImage(){
 
 function getDeadGeeseImage(){
     return this.deadGeeseImage;
+}
+
+function getLionLaughImage(){
+    return this.lionLaughImage;
 }
 
 // Getters for HUD
