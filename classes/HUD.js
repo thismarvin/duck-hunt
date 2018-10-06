@@ -82,10 +82,10 @@ class HUD {
             this.progressIndex++;
             this.waitForNextGooseQueue = true;
             if (result === "Body was shot") {
-                this.incrementScore(this.gooseWorth * this.round);
+                this.incrementScore(this.gooseWorth);
             }
             else if (result === "Head was shot") {
-                this.incrementScore(this.gooseWorth * this.round * this.headShotMultiplier);
+                this.incrementScore(this.gooseWorth * this.headShotMultiplier);
                 this.showHeadShotPrompt = true;
                 this.flashTimerText.reset();
             }

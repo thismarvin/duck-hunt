@@ -16,9 +16,9 @@ const bodyHitboxOffsetY = 44;
 class Goose extends Entity {
   constructor(x, y, speed, initPanicFactor = 0.5, maxPanicFactor = 0.8) {
     super(x, y, gooseWidth, gooseHeight);
-    this.speed = speed; // not really the magnitude of velocity vector, but works similarly
-    this.deltaX = (Math.random() * (1 - minSpeed) + minSpeed) * speed;
-    this.deltaY = (Math.random() * (1 - minSpeed) + minSpeed) * speed;
+    this.speed = speed + getCurrentRound() - 1 ; // not really the magnitude of velocity vector, but works similarly
+    this.deltaX = (Math.random() * (1 - minSpeed) + minSpeed) * this.speed;
+    this.deltaY = (Math.random() * (1 - minSpeed) + minSpeed) * this.speed;
     this.bodyHitbox = new Rectangle(x + bodyHitboxOffsetX, y + bodyHitboxOffsetY, bodyHitboxW, bodyHitboxH);
     this.headHitbox = new Rectangle(x + headHitboxOffsetX, y + headHitboxOffsetY, headHitboxW, headHitboxH);
 
@@ -26,7 +26,7 @@ class Goose extends Entity {
     this.shouldFall = false; // true if the goose is killed and needs to fall
     this.shouldFlyAway = false; // true if the goose should fly away
 
-    this.minDuration = 2000;
+    this.minDuration = 1000;
     let duration = 10 * 1000 - getCurrentRound() * 1000;
     duration = duration < this.minDuration ? this.minDuration : duration;
 
