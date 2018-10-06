@@ -11,6 +11,7 @@ class Dog extends Entity {
     this.grabSprite = new Sprite(0, 0, 45 * 2, 48 * 2, getLionGrabImage());
     this.deadGooseSprite = new Sprite(0, 0, 25 * 2, 63 * 2, getDeadGeeseImage());
     this.deadGooseIndex = 0;
+    this.laughSprite = new Sprite(0, 0, 42 * 2, 51 * 2, getLionLaughImage(), 2);
   }
 
   update() {
@@ -23,9 +24,14 @@ class Dog extends Entity {
     //super.show();
     if (this.isPickingUpGoose) {
       this.grabSprite.setLocation(this.x, this.y);
-      this.deadGooseSprite.setLocation(this.x + 32 * 2,this.y);
+      this.deadGooseSprite.setLocation(this.x + 32 * 2, this.y);
       this.grabSprite.show();
       this.deadGooseSprite.show();
+    }
+    if (this.isLaughing) {
+      this.laughSprite.update();
+      this.laughSprite.setLocation(this.x,this.y);
+      this.laughSprite.show();
     }
   }
 

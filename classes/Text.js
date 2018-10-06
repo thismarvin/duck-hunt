@@ -6,22 +6,22 @@ class Text {
         this.x = x;
         this.y = y;
         this.text = text;
-        this.sprites = [];   
+        this.sprites = [];
         for (let i = text.length - 1; i >= 0; i--) {
-            this.sprites.push(new Sprite(this.x + i * (spacingWidth), this.y, textWidth, textWidth, getFontImage(),text.charCodeAt(i) % 16, floor(text.charCodeAt(i) / 16)));
+            this.sprites.push(new Sprite(this.x + i * (spacingWidth), this.y, textWidth, textWidth, getFontImage(), 0, text.charCodeAt(i) % 16, floor(text.charCodeAt(i) / 16)));
         }
     }
- 
+
     change(text) {
         this.sprites = [];
         for (let i = text.length - 1; i >= 0; i--) {
-            this.sprites.push(new Sprite(this.x + i * (spacingWidth), this.y, textWidth, textWidth, getFontImage(),text.charCodeAt(i) % 16, floor(text.charCodeAt(i) / 16)));
+            this.sprites.push(new Sprite(this.x + i * (spacingWidth), this.y, textWidth, textWidth, getFontImage(), 0, text.charCodeAt(i) % 16, floor(text.charCodeAt(i) / 16)));
         }
     }
 
     show() {
         this.sprites.forEach(sprite => {
-            sprite.show();          
+            sprite.show();
         });
     }
 }

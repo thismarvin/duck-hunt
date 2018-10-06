@@ -1,11 +1,12 @@
 class Sprite {
-    constructor(x, y, sWidth, sHeight, spriteSheet, sourceX = 0, sourceY = 0) {
+    constructor(x, y, sWidth, sHeight, spriteSheet, frames = 0, sourceX = 0, sourceY = 0) {
         this.x = x;
         this.y = y;
         this.sWidth = sWidth;
         this.sHeight = sHeight;
         this.sourceX = sourceX * sWidth;
         this.sourceY = sourceY * sHeight;
+        this.frames = frames;
         this.spriteSheet = spriteSheet;
 
         // temp
@@ -18,14 +19,17 @@ class Sprite {
         this.y = y;
     }
 
-    setSpriteSheet(spriteSheet){
+    setSpriteSheet(spriteSheet) {
         this.spriteSheet = spriteSheet;
     }
 
     // temp
     update() {
+        if (this.frames == 0)
+            return;
+
         if (this.timer.isFinished()) {
-            this.frame = this.frame + 1 > 7 ? 0 : ++this.frame;
+            this.frame = this.frame + 1 > this.frames ? 0 : ++this.frame;
             this.sourceX = this.frame * this.sWidth;
             this.timer.reset();
         }

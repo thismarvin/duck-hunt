@@ -48,7 +48,7 @@ class Playfield {
         this.pickingUpGoose = true;
       }
     }
-    if (this.queueNewGoose) {
+    if (this.queueNewGoose && !this.dog.isLaughing) {
       spawnNewGoose();
     }
   }
@@ -57,6 +57,7 @@ class Playfield {
     if (this.geese.length <= 0)
       return;
     this.geese[this.geese.length - 1].shouldFlyAway = true;
+    this.dog.initLaugh();
   }
 
   wasAGooseHitAt(x, y) {
