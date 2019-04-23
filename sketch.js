@@ -28,15 +28,25 @@ let playfield;
 let hud;
 
 function preload() {
-    this.backgroundImage = loadImage('assets/Background.png');
-    this.foregroundImage = loadImage('assets/Foreground.png');
-    this.fontImage = loadImage('assets/font.png');
-    this.redGooseImage = loadImage('assets/Red Duck.png');
-    this.geeseRightImage = loadImage('assets/geeseRight.png');
-    this.geeseLeftImage = loadImage('assets/geeseLeft.png');
-    this.lionGrabImage = loadImage('assets/lionGrab.png');
-    this.deadGeeseImage = loadImage('assets/deadGeese.png');
-    this.lionLaughImage = loadImage('assets/lionLaugh.png');
+    this.backgroundImage = createImg('https://user-images.githubusercontent.com/43303199/56609699-5f20ca00-65d3-11e9-854a-b2fbbe3c69aa.png');
+    this.foregroundImage = createImg('https://user-images.githubusercontent.com/43303199/56609815-a8711980-65d3-11e9-9089-4619592fe6cf.png');
+    this.fontImage = createImg('https://user-images.githubusercontent.com/43303199/56609814-a8711980-65d3-11e9-91f8-08799d580512.png');
+    this.redGooseImage = createImg('https://user-images.githubusercontent.com/43303199/56609821-a909b000-65d3-11e9-8a66-8b752d1fe303.png');
+    this.geeseRightImage = createImg('https://user-images.githubusercontent.com/43303199/56609818-a8711980-65d3-11e9-89f4-51c574f79a73.png');
+    this.geeseLeftImage = createImg('https://user-images.githubusercontent.com/43303199/56609817-a8711980-65d3-11e9-8162-d88960c4f33f.png');
+    this.lionGrabImage = createImg('https://user-images.githubusercontent.com/43303199/56609819-a909b000-65d3-11e9-9cb6-e022e4f6eb69.png');
+    this.deadGeeseImage = createImg('https://user-images.githubusercontent.com/43303199/56609813-a8711980-65d3-11e9-9de4-8b3d402ff9bc.png');
+    this.lionLaughImage = createImg('https://user-images.githubusercontent.com/43303199/56609820-a909b000-65d3-11e9-91ea-d8b732a11ad5.png');
+
+    this.backgroundImage.hide();
+    this.foregroundImage.hide();
+    this.fontImage.hide();
+    this.redGooseImage.hide();
+    this.geeseRightImage.hide();
+    this.geeseLeftImage.hide();
+    this.lionGrabImage.hide();
+    this.deadGeeseImage.hide();
+    this.lionLaughImage.hide();
 }
 
 function setup() {
