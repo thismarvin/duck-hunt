@@ -28,24 +28,15 @@ let playfield;
 let hud;
 
 function preload() {
-    this.backgroundImage = createImg();
-    this.backgroundImage.hide();
-    this.foregroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/19df8e9052b7d8e2fa6a7fa98e6c1991-full.png');
-    this.foregroundImage.hide();
-    this.fontImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/2/f99cd60631585be006760c659cdf41df-full.png');
-    this.fontImage.hide();
-    this.redGooseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/823a93c264e1b39e5262b03ad63b78f2-full.png');
-    this.redGooseImage.hide();
-    this.geeseRightImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/7317b96072ef3c842c8ebe01f6fda56c-full.png');
-    this.geeseRightImage.hide();
-    this.geeseLeftImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/1bd4fdd3512bf37eeac3e9d92d69398b-full.png');
-    this.geeseLeftImage.hide();
-    this.lionGrabImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/c2ca838d8b85de1c3bf708b6888a59b4-full.png');
-    this.lionGrabImage.hide();
-    this.deadGeeseImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/5/83316a2ec11ab84718688c030f3e88e5-full.png');
-    this.deadGeeseImage.hide();
-    this.lionLaughImage = createImg('https://cdn1.imggmi.com/uploads/2018/10/7/dffeeaf2f8670fdab45754702f47377c-full.png');
-    this.lionLaughImage.hide();
+    this.backgroundImage = loadImage('assets/Background.png');
+    this.foregroundImage = loadImage('assets/Foreground.png');
+    this.fontImage = loadImage('assets/font.png');
+    this.redGooseImage = loadImage('assets/Red Duck.png');
+    this.geeseRightImage = loadImage('assets/geeseRight.png');
+    this.geeseLeftImage = loadImage('assets/geeseLeft.png');
+    this.lionGrabImage = loadImage('assets/lionGrab.png');
+    this.deadGeeseImage = loadImage('assets/deadGeese.png');
+    this.lionLaughImage = loadImage('assets/lionLaugh.png');
 }
 
 function setup() {
