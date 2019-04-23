@@ -28,7 +28,7 @@ let playfield;
 let hud;
 
 function preload() {
-    this.backgroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/95de8eee248cd8fe030292a0a13f5274-full.png');
+    this.backgroundImage = createImg();
     this.backgroundImage.hide();
     this.foregroundImage = createImg('https://cdn1.imggmi.com/uploads/2018/9/28/19df8e9052b7d8e2fa6a7fa98e6c1991-full.png');
     this.foregroundImage.hide();
